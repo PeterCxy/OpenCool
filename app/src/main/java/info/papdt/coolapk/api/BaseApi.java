@@ -76,7 +76,7 @@ public class BaseApi
 		try {
 			return HttpUtility.httpRequest(host, location, urlParams, postParams, method, mCookie);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			return null;
 		}
 	}
 	
