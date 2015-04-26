@@ -1,13 +1,14 @@
 package info.papdt.coolapk.ui.main;
 
-import android.app.Activity;
 import android.os.Bundle;
 
+import info.papdt.coolapk.R;
 import info.papdt.coolapk.api.BaseApi;
 import info.papdt.coolapk.api.apk.ApkApi;
+import info.papdt.coolapk.ui.common.ToolbarActivity;
 import info.papdt.coolapk.util.GlobalContext;
 
-public class MainActivity extends Activity
+public class MainActivity extends ToolbarActivity
 {
 
 	@Override
@@ -20,5 +21,10 @@ public class MainActivity extends Activity
 				BaseApi.getInstance(ApkApi.class).getApkList("home", 1);
 			}
 		}.start();
+	}
+
+	@Override
+	protected int getLayoutId() {
+		return R.layout.main;
 	}
 }
