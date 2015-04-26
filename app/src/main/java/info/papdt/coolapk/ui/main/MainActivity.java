@@ -13,7 +13,6 @@ public class MainActivity extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		GlobalContext.set(this);
 		
 		new Thread() {
 			@Override
