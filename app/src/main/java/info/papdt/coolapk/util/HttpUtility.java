@@ -2,6 +2,8 @@ package info.papdt.coolapk.util;
 
 import android.util.Log;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -78,7 +80,7 @@ public class HttpUtility {
 				in = new GZIPInputStream(in);
 			}
 
-			BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
+			BufferedReader buffer = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 
 			String s;
 			StringBuilder str = new StringBuilder();
@@ -87,7 +89,7 @@ public class HttpUtility {
 				str.append(s);
 			}
 
-			return str.toString();
+			return StringEscapeUtils.unescapeJson(str.toString());
 		} else {
 			if (DEBUG)
 				Log.d(TAG, "http " + conn.getResponseCode());
