@@ -15,8 +15,14 @@ import static info.papdt.coolapk.util.Constants.*;
 
 public class ApkApi extends BaseApi
 {
+	public static final Creator<ApkApi> CREATOR = new Creator<ApkApi>() {
+		@Override
+		public ApkApi create() {
+			return new ApkApi();
+		}
+	};
 	
-	public ApkApi() {
+	private ApkApi() {
 		super();
 	}
 	

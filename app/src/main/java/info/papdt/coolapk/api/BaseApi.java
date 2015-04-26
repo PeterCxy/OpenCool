@@ -19,6 +19,10 @@ import static info.papdt.coolapk.util.Constants.*;
 
 public class BaseApi
 {
+	protected static interface Creator<T> {
+		T create();
+	}
+	
 	private static final String TAG = BaseApi.class.getSimpleName();
 	private static final HashMap<Class, Object> sInstances = new HashMap<Class, Object>();
 	
@@ -32,11 +36,11 @@ public class BaseApi
 		
 		if (ret == null) {
 			try {
-				ret = apiClass.newInstance();
+				ret = ((Creator<T>) apiClass.getDeclaredField("CREATOR").get(null)).create();
 				sInstances.put(apiClass, ret);
-			} catch (IllegalAccessException e) {
+			} catch (NoSuchFieldException e) {
 				throw new RuntimeException(e);
-			} catch (InstantiationException e) {
+			} catch (IllegalAccessException e) {
 				throw new RuntimeException(e);
 			}
 		}
