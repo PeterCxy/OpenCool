@@ -7,6 +7,7 @@ import info.papdt.coolapk.api.BaseApi;
 import info.papdt.coolapk.api.apk.ApkApi;
 import info.papdt.coolapk.ui.common.ToolbarActivity;
 import info.papdt.coolapk.util.GlobalContext;
+import static info.papdt.coolapk.util.Utility.*;
 
 public class MainActivity extends ToolbarActivity
 {
@@ -18,7 +19,7 @@ public class MainActivity extends ToolbarActivity
 		new Thread() {
 			@Override
 			public void run() {
-				BaseApi.getInstance(ApkApi.class).getApkList("home", 1);
+				BaseApi.getInstance(ApkApi.class).checkUpdate(getAppVersionCodes());
 			}
 		}.start();
 	}

@@ -13,4 +13,5 @@ public class Constants
 	
 	// Apk
 	public static final String APK_GET_LIST = "/apk/getApkList";
+	public static final String APK_CHECK_UPDATE = "/apk/checkUpdate";
 }

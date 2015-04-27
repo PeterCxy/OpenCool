@@ -44,4 +44,9 @@ public class ApkModel
 				  apkRomVersion = "",
 				  downCount = "",
 				  commentCount = "";
+
+	@Override
+	public int hashCode() {
+		return apkname.hashCode();
+	}
 }

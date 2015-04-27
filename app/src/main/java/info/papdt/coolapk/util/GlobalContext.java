@@ -2,6 +2,7 @@ package info.papdt.coolapk.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 
 public class GlobalContext
 {
@@ -17,5 +18,9 @@ public class GlobalContext
 	
 	public static SharedPreferences getSharedPreferences(String name) {
 		return sContext.getSharedPreferences(name, Context.MODE_WORLD_READABLE);
+	}
+	
+	public static PackageManager getPackageManager() {
+		return sContext.getPackageManager();
 	}
 }
