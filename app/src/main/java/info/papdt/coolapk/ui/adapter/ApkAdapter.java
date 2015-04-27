@@ -80,6 +80,8 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ViewHolder>
 		protected void onPostExecute(Object[] result) {
 			super.onPostExecute(result);
 			
+			if (result == null) return;
+			
 			ViewHolder h = (ViewHolder) result[0];
 			int pos = Integer.valueOf(result[1]);
 			
