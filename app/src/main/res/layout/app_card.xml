@@ -14,7 +14,8 @@
 		
 		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:padding="5dp">
     
 			<ImageView
 				android:id="@+id/app_icon"
@@ -29,7 +30,8 @@
 				android:layout_height="wrap_content"
 				android:textSize="14sp"
 				android:textColor="@color/black"
-				android:ellipsize="end"/>
+				android:ellipsize="end"
+				android:singleLine="true"/>
 			
 		</RelativeLayout>
 	
