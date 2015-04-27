@@ -3,6 +3,7 @@ package info.papdt.coolapk.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.view.LayoutInflater;
 
 public class GlobalContext
 {
@@ -22,5 +23,9 @@ public class GlobalContext
 	
 	public static PackageManager getPackageManager() {
 		return sContext.getPackageManager();
+	}
+	
+	public static LayoutInflater getLayoutInflater() {
+		return (LayoutInflater) sContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 }

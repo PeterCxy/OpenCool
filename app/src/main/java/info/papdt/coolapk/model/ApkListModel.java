@@ -17,6 +17,11 @@ public class ApkListModel implements AbsListModel<ApkListModel, ApkModel>
 	}
 
 	@Override
+	public ApkModel get(int pos) {
+		return data.get(pos);
+	}
+
+	@Override
 	public List<ApkModel> getList() {
 		return data;
 	}
@@ -24,6 +29,11 @@ public class ApkListModel implements AbsListModel<ApkListModel, ApkModel>
 	@Override
 	public int size() {
 		return data.size();
+	}
+
+	@Override
+	public void clear() {
+		data.clear();
 	}
 
 }

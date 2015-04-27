@@ -16,12 +16,7 @@ public class MainActivity extends ToolbarActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		new Thread() {
-			@Override
-			public void run() {
-				BaseApi.getInstance(ApkApi.class).checkUpdate(getAppVersionCodes());
-			}
-		}.start();
+		getFragmentManager().beginTransaction().replace(R.id.frame, new CheckUpdateFragment()).commit();
 	}
 
 	@Override
