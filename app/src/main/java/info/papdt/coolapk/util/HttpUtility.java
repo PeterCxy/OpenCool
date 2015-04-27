@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -130,5 +131,40 @@ public class HttpUtility {
 		}
 		
 		return sb.toString().substring(SIGN_START, SIGN_END);
+	}
+	
+	public static InputStream getRemoteFileInput(String uri) {
+		try {
+			HttpURLConnection conn = (HttpURLConnection) new URL(uri).openConnection();
+			conn.setRequestMethod(HTTP_GET);
+			conn.setConnectTimeout(5000);
+			return conn.getInputStream();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public static byte[] getRemoteFileBytes(String uri, ProgressCallback callback) {
+		InputStream i = getRemoteFileInput(uri);
+		byte[] ret = Utility.readInputStream(i, callback);
+		
+		try {
+			i.close();
+		} catch (Exception e) {
+			
+		}
+		
+		return ret;
+	}
+	
+	public static void downloadRemoteFile(String uri, File f, ProgressCallback callback) {
+		InputStream i = getRemoteFileInput(uri);
+		Utility.writeInputStreamToFile(i, f, callback);
+		
+		try {
+			i.close();
+		} catch (Exception e) {
+			f.delete();
+		}
 	}
 }

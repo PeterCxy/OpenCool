@@ -6,6 +6,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +52,53 @@ public class Utility
 			return pm.getPackageInfo(pkgName, PackageManager.GET_META_DATA);
 		} catch (Exception e) {
 			return null;
+		}
+	}
+	
+	public static byte[] readInputStream(InputStream in, ProgressCallback callback) {
+		byte[] buf = new byte[512];
+		int len;
+		int totalLen = 0;
+		ByteArrayOutputStream o = new ByteArrayOutputStream();
+		
+		try {
+			int total = in.available();
+			while ((len = in.read(buf)) != -1) {
+				o.write(buf, 0, len);
+				totalLen += len;
+				if (callback != null)
+					callback.onProgressChanged(totalLen, total);
+			}
+		} catch (Exception e) {
+			
+		}
+		
+		return o.toByteArray();
+	}
+	
+	public static void writeInputStreamToFile(InputStream in, File f, ProgressCallback callback) {
+		try {
+			
+			if (f.exists()) {
+				f.delete();
+			}
+			
+			f.createNewFile();
+			
+			FileOutputStream o = new FileOutputStream(f);
+			
+			int total = in.available();
+			int totalLen = 0;
+			int len;
+			byte[] buf = new byte[512];
+			while ((len = in.read(buf)) != -1) {
+				o.write(buf, 0, len);
+				totalLen += len;
+				if (callback != null)
+					callback.onProgressChanged(totalLen, total);
+			}
+		} catch (Exception e) {
+			f.delete();
 		}
 	}
 }
