@@ -43,6 +43,6 @@ public class NewAndUpdatedFragment extends BaseListFragment<ApkAdapter, GridLayo
 
 	@Override
 	protected GridLayoutManager onCreateLayoutManager() {
-		return new GridLayoutManager(getActivity(), 3);
+		return new MyGridLayoutManager(getActivity(), 3);
 	}
 }
