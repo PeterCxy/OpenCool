@@ -17,7 +17,7 @@
 			android:layout_height="wrap_content"
 			android:padding="5dp">
     
-			<info.papdt.coolapk.ui.common.SquareImageView
+			<net.typeblog.coolapk.ui.common.SquareImageView
 				android:id="@+id/app_icon"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
