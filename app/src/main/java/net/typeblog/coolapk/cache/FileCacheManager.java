@@ -32,9 +32,13 @@ public class FileCacheManager
 		mCacheDir = GlobalContext.get().getExternalCacheDir();
 	}
 	
+	public Bitmap getMemoryCacheForApk(ApkModel apk) {
+		return MemoryCacheManager.get(APK_ICON + apk.apkname);
+	}
+	
 	public Bitmap getApkIcon(ApkModel apk) {
 		
-		Bitmap cache = MemoryCacheManager.get(APK_ICON + apk.apkname);
+		Bitmap cache = getMemoryCacheForApk(apk);
 		if (cache != null) return cache;
 		
 		File dir = new File(mCacheDir.getAbsolutePath() + "/" + APK_ICON);

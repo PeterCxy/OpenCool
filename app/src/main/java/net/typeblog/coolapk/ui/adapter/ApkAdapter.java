@@ -41,10 +41,14 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ViewHolder>
 		ApkModel apk = mList.get(position);
 		
 		h.pos = position;
-		h.icon.setImageBitmap(null);
 		h.title.setText(apk.title);
 		
-		new IconTask().execute(h, position);
+		Bitmap icon = FileCacheManager.getInstance().getMemoryCacheForApk(apk);
+		if (icon != null)
+			h.icon.setImageBitmap(icon);
+		else
+			new IconTask().execute(h, position);
+		
 	}
 
 	@Override
