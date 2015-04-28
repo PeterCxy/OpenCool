@@ -47,7 +47,9 @@ public class FileCacheManager
 		}
 		
 		if (f.exists()) {
-			return BitmapFactory.decodeFile(f.getAbsolutePath());
+			cache = BitmapFactory.decodeFile(f.getAbsolutePath());
+			MemoryCacheManager.put(APK_ICON + apk.apkname, cache);
+			return cache;
 		} else {
 			return null;
 		}
