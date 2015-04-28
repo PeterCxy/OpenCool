@@ -33,6 +33,10 @@ public class FileCacheManager
 	}
 	
 	public Bitmap getApkIcon(ApkModel apk) {
+		
+		Bitmap cache = MemoryCacheManager.get(APK_ICON + apk.apkname);
+		if (cache != null) return cache;
+		
 		File dir = new File(mCacheDir.getAbsolutePath() + "/" + APK_ICON);
 		if (!dir.exists())
 			dir.mkdirs();
