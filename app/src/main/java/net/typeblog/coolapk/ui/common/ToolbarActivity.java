@@ -4,13 +4,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import net.typeblog.coolapk.R;
 import static net.typeblog.coolapk.util.Utility.*;
 
-public abstract class ToolbarActivity extends ActionBarActivity
+public abstract class ToolbarActivity extends AppCompatActivity
 {
 	private Toolbar mToolbar;
 	private ViewGroup mToolbarWrapper;
