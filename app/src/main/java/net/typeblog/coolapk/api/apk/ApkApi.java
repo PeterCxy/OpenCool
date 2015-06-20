@@ -1,6 +1,7 @@
 package net.typeblog.coolapk.api.apk;
 
 import android.os.Build;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -12,11 +13,14 @@ import net.typeblog.coolapk.api.BaseApi;
 import net.typeblog.coolapk.model.ApkModel;
 import net.typeblog.coolapk.model.ApkListModel;
 import net.typeblog.coolapk.util.HttpParameters;
+import static net.typeblog.coolapk.BuildConfig.DEBUG;
 import static net.typeblog.coolapk.api.Constants.*;
 import static net.typeblog.coolapk.util.Constants.*;
 
 public class ApkApi extends BaseApi
 {
+	private static final String TAG = ApkApi.class.getSimpleName();
+	
 	public static final Creator<ApkApi> CREATOR = new Creator<ApkApi>() {
 		@Override
 		public ApkApi create() {
@@ -56,6 +60,11 @@ public class ApkApi extends BaseApi
 		if (result != null && result.optInt("status") > 0) {
 			return new Gson().fromJson(result.toString(), ApkListModel.class);
 		} else {
+			
+			if (DEBUG) {
+				Log.e(TAG, "IllegalResult " + (result != null ? result.toString() : ""));
+			}
+			
 			return null;
 		}
 	}

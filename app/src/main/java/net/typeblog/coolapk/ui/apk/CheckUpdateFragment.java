@@ -37,7 +37,10 @@ public class CheckUpdateFragment extends BaseListFragment<ApkAdapter, GridLayout
 			mList.clear();
 		}
 		
-		mList.addAll(mPendingList);
+		if (mPendingList != null) {
+			mList.addAll(mPendingList);
+		}
+		
 		mPendingList = null;
 	}
 

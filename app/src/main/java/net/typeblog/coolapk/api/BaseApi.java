@@ -96,6 +96,11 @@ public class BaseApi
 			try {
 				return new JSONObject(str);
 			} catch (JSONException e) {
+				
+				if (DEBUG) {
+					Log.e(TAG, Log.getStackTraceString(e));
+				}
+				
 				return null;
 			}
 		}
