@@ -12,9 +12,6 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import static net.typeblog.coolapk.BuildConfig.DEBUG;
 import static net.typeblog.coolapk.util.Constants.*;
@@ -60,30 +57,9 @@ public class HttpUtility {
 		
 		String data = SIGN_HEAD + url + SIGN_TAIL;
 		
-		MessageDigest digest = null;
 		
-		try {
-			digest = MessageDigest.getInstance("MD5");
-		} catch (NoSuchAlgorithmException e) {
-			return "";
-		}
 		
-		byte[] bytes = null;
-		
-		try {
-			bytes = digest.digest(data.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			return "";
-		}
-		
-		// Digest to hex
-		StringBuilder sb = new StringBuilder();
-		
-		for (byte b : bytes) {
-			sb.append(String.format("%02x", b & 0xff));
-		}
-		
-		return sb.toString().substring(SIGN_START, SIGN_END);
+		return StringUtility.md5(data).substring(SIGN_START, SIGN_END);
 	}
 	
 	public static InputStream getRemoteFileInput(String uri) {
