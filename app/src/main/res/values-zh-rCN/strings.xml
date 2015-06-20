@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<!-- Home -->
-	<string name="updatable">可更新</string>
-	<string name="new_updated">新应用 + 最近更新</string>
-</resources>

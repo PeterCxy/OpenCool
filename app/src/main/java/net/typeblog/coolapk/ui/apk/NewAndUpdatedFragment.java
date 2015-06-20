@@ -8,7 +8,6 @@ import net.typeblog.coolapk.api.apk.ApkApi;
 import net.typeblog.coolapk.model.ApkListModel;
 import net.typeblog.coolapk.ui.adapter.ApkAdapter;
 import net.typeblog.coolapk.ui.common.BaseListFragment;
-import net.typeblog.coolapk.ui.common.MyGridLayoutManager;
 import static net.typeblog.coolapk.util.Utility.*;
 
 public class NewAndUpdatedFragment extends BaseListFragment<ApkAdapter, GridLayoutManager>
@@ -43,6 +42,6 @@ public class NewAndUpdatedFragment extends BaseListFragment<ApkAdapter, GridLayo
 
 	@Override
 	protected GridLayoutManager onCreateLayoutManager() {
-		return new MyGridLayoutManager(getActivity(), 3);
+		return new GridLayoutManager(getActivity(), 3);
 	}
 }
