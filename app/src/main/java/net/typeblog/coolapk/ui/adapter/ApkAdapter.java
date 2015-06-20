@@ -3,14 +3,14 @@ package net.typeblog.coolapk.ui.adapter;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import net.typeblog.coolapk.R;
-import net.typeblog.coolapk.cache.FileCacheManager;
 import net.typeblog.coolapk.model.ApkModel;
 import net.typeblog.coolapk.model.ApkListModel;
 import net.typeblog.coolapk.util.AsyncTask;
@@ -35,9 +35,6 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ViewHolder>
 	public void onViewRecycled(ViewHolder h) {
 		super.onViewRecycled(h);
 		h.pos = -1;
-		h.icon.setImageBitmap(null);
-		h.icon.clearAnimation();
-		h.icon.setAlpha(0.0f);
 	}
 
 	@Override
@@ -47,16 +44,11 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ViewHolder>
 		h.pos = position;
 		h.title.setText(apk.title);
 		
-		Bitmap icon = FileCacheManager.getInstance().getMemoryCacheForApk(apk);
-		if (icon != null) {
-			h.icon.setAlpha(1.0f);
-			h.icon.setImageBitmap(icon);
-		} else {
-			h.icon.setAlpha(0.0f);
-			h.icon.setImageBitmap(null);
-			new IconTask().execute(h, position);
-		}
-		
+		Picasso.with(GlobalContext.get())
+			.load(apk.logo)
+			.fit()
+			.centerInside()
+			.into(h.icon);
 	}
 
 	@Override
@@ -74,37 +66,6 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ViewHolder>
 			
 			icon = $(v, R.id.app_icon);
 			title = $(v, R.id.app_title);
-		}
-	}
-	
-	private class IconTask extends AsyncTask<Object, Void, Object[]> {
-
-		@Override
-		protected Object[] doInBackground(Object... params) {
-			ViewHolder h = (ViewHolder) params[0];
-			int pos = Integer.valueOf(params[1]);
-			if (h.pos != pos) return null;
-			Bitmap bmp = FileCacheManager.getInstance().getApkIcon(mList.get(pos));
-			return new Object[]{h, pos, bmp};
-		}
-
-		@Override
-		protected void onPostExecute(Object[] result) {
-			super.onPostExecute(result);
-			
-			if (result == null) return;
-			
-			ViewHolder h = (ViewHolder) result[0];
-			int pos = Integer.valueOf(result[1]);
-			
-			if (h.pos == pos) {
-				h.icon.setImageBitmap((Bitmap) result[2]);
-				AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
-				anim.setDuration(500);
-				anim.setFillAfter(true);
-				h.icon.setAlpha(1.0f);
-				h.icon.startAnimation(anim);
-			}
 		}
 	}
 }
