@@ -2,4 +2,11 @@
 <resources>
 
 	<string name="app_name" translatable="false">OpenCool</string>
+	
+	<!-- Home -->
+	<string-array name="home_tabs">
+		<item>Updates</item>
+		<item>Upcoming</item>
+	</string-array>
+	
 </resources>

@@ -17,7 +17,7 @@ public class MainActivity extends ToolbarActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		getFragmentManager().beginTransaction().replace(R.id.frame, new CheckUpdateFragment()).commit();
+		getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
 	}
 
 	@Override
