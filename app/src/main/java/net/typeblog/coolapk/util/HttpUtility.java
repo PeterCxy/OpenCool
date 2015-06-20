@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,9 +21,6 @@ import static net.typeblog.coolapk.util.Constants.*;
 
 public class HttpUtility {
 	private static final String TAG = HttpUtility.class.getSimpleName();
-	
-	public static final MediaType TYPE
-		= MediaType.parse("charset=utf-8");
 	
 	public static String httpRequest(String host, String location, HttpParameters urlParams, HttpParameters postParams, String method, String cookie) throws Exception {
 		Request.Builder builder = new Request.Builder()
@@ -93,10 +88,10 @@ public class HttpUtility {
 	
 	public static InputStream getRemoteFileInput(String uri) {
 		try {
-			HttpURLConnection conn = (HttpURLConnection) new URL(uri).openConnection();
-			conn.setRequestMethod(HTTP_GET);
-			conn.setConnectTimeout(5000);
-			return conn.getInputStream();
+			return new OkHttpClient().newCall(new Request.Builder()
+				.url(uri)
+				.get()
+				.build()).execute().body().byteStream();
 		} catch (Exception e) {
 			return null;
 		}
