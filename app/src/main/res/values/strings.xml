@@ -3,6 +3,9 @@
 
 	<string name="app_name" translatable="false">OpenCool</string>
 	
+	<!-- Main Drawer -->
+	<string name="home">Home</string>
+	
 	<!-- Home -->
 	<string-array name="home_tabs">
 		<item>Updates</item>
