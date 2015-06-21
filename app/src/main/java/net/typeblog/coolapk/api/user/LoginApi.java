@@ -47,8 +47,12 @@ public class LoginApi extends BaseApi
 		
 		JSONObject result = requestJSON(HOST, LOGIN, null, params, HTTP_POST);
 		
-		if (result != null && result.optInt("status") != -1) {
+		if (result != null && result.optInt("status") > 0) {
 			JSONObject info = result.optJSONObject("data");
+			
+			if (info == null) {
+				return false;
+			}
 			
 			mAuth = info.optString("auth");
 			mUid = info.optString("uid");

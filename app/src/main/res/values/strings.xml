@@ -4,12 +4,23 @@
 	<string name="app_name" translatable="false">OpenCool</string>
 	
 	<!-- Main Drawer -->
+	<string name="not_logged">Not logged</string>
+	<string name="login">Login</string>
+	<string name="cancel">Cancel</string>
 	<string name="home">Home</string>
+	
+	<!-- Login -->
+	<string name="username">Username</string>
+	<string name="password">Password</string>
 	
 	<!-- Home -->
 	<string-array name="home_tabs">
 		<item>Updates</item>
 		<item>Upcoming</item>
 	</string-array>
+	
+	<!-- Messages -->
+	<string name="plz_wait">Please wait...</string>
+	<string name="login_fail">Login failed.</string>
 	
 </resources>

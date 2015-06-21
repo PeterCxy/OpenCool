@@ -46,7 +46,7 @@ public class HttpUtility {
 			builder.get();
 		}
 		
-		return new OkHttpClient().newCall(builder.build()).execute().body().string();
+		return StringEscapeUtils.unescapeJson(new OkHttpClient().newCall(builder.build()).execute().body().string());
 	}
 	
 	public static String generateURLSignature(String url) {
