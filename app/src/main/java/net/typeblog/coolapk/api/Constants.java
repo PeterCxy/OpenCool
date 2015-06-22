@@ -17,4 +17,7 @@ public class Constants
 	
 	// Login
 	public static final String LOGIN = "/account/login";
+	
+	// User
+	public static final String GET_USER_DATA = "/user/getUserData";
 }

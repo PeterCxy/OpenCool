@@ -3,6 +3,8 @@ package net.typeblog.coolapk.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.net.URLEncoder;
+
 import net.typeblog.coolapk.api.BaseApi;
 import net.typeblog.coolapk.api.user.LoginApi;
 
@@ -44,6 +46,12 @@ public class LoginManager
 	
 	public String getUserName() {
 		return mPref.getString(USERNAME, "");
+	}
+	
+	public String buildCookie() {
+		return "uid=" + getUid() +"; "
+			+ "username=" + URLEncoder.encode(getUserName()) + "; "
+			+ "auth=" + getAuth() + ";";
 	}
 	
 	public boolean doLogin(String login, String password) {

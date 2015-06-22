@@ -19,7 +19,7 @@ import static net.typeblog.coolapk.util.Constants.*;
 
 public class BaseApi
 {
-	protected static interface Creator<T> {
+	public static interface Creator<T> {
 		T create();
 	}
 	
@@ -133,6 +133,10 @@ public class BaseApi
 		}
 		
 		mRegistering = false;
+	}
+	
+	protected void setCookie(String cookie) {
+		mCookie = cookie;
 	}
 	
 }
